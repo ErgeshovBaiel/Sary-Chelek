@@ -1,0 +1,14 @@
+.header {
+  background-color: #00695c;
+  color: white;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.activeLink {
+  border-bottom: 2px solid white;
+  padding-bottom: 0.25rem;
+  font-weight: bold;
+}
