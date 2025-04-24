@@ -4,8 +4,8 @@ function Nature () {
   return (
     <div className={styles.page}>
       <div>
-        <h2 className='text-3xl font-medium'>Табияты</h2>
-        <div className='flex gap-25'>
+        <h2 className='text-3xl font-medium'>Сары-Челектин табияты</h2>
+        <div className='flex gap-35 mt-10'>
         <p className='w-200 mt-15 text-xl'>
           📍 Сары-Челек кайда жайгашкан? Сары-Челек көлү Жалал-Абад облусундагы
           Ала-Бука жана Чаткал райондорунун ортосунда, Сары-Челек мамлекеттик
@@ -16,7 +16,11 @@ function Nature () {
         className='w-55 h-35  rounded-2xl relative top-10'
         src="https://dwc.kg/wp-content/uploads/2023/10/scale_1200-1-optimized.jpeg" alt="" />
         </div>
-        <p className='w-200 mt-15 text-xl relative left-150'>
+        <div className='flex gap-35 mt-10'>
+          <img 
+          className='w-55 h-35  rounded-2xl relative top-10'
+          src="https://manas.su/assets/images/see_place/Sary-chelek.jpg" alt="" />
+        <p className='w-200 mt-15 text-xl relative'>
           🌿 Жаратылышы жана кооздугу Сары-Челектин табияты өзгөчө: Көл
           мөңгүлөрдөн жана башаты бар булактардан толуп турат. Аны курчап турган
           бийик карагайлар, тиштенген аскалар жана жаңы жыттанган тоо гүлдөрү
@@ -24,6 +28,7 @@ function Nature () {
           234 метрге чейин жетет! Көлдүн жээгинде суу өсүмдүктөрү, кээде ак куу,
           өрдөктөр, балык түрлөрү кездешет.
         </p>
+        </div>
         <p className='w-200 mt-15 text-xl'>
           🐻 Фаунасы – жаныбарлар дүйнөсү Корук болгондуктан, бул жерде жапайы
           жаныбарлар көп: Аюу, аркар, кулжа, түлкү, жана кээде бүркүт сыяктуу
