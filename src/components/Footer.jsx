@@ -1,9 +1,12 @@
+import { useTranslation } from 'react-i18next'
 import styles from './Footer.module.scss'
 
-function Footer() {
+function Footer () {
+  const { t } = useTranslation()
+
   return (
     <footer className={styles.footer}>
-      <p>&copy; 2025 Сары-Челек. Бардык укуктар корголгон.</p>
+      <p>{t('rights')}</p>
     </footer>
   )
 }

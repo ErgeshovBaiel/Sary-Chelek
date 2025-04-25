@@ -7,7 +7,6 @@ import History from "./pages/History";
 import Nature from "./pages/Nature";
 import Gallery from "./pages/Gallery";
 import Contact from "./pages/Contact";
-import styles from "./App.module.scss";
 import HowToGo from "./pages/HowToGo";
 import Music from "./components/music/Music";
 
@@ -15,7 +14,7 @@ function App() {
   return (
     <Router>
       <Music />
-      <div className={styles.app}>
+      <div>
         <Header />
         <main>
           <Routes>

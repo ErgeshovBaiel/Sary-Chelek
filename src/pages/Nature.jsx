@@ -1,55 +1,60 @@
+import { useTranslation } from 'react-i18next'
 import styles from './Page.module.scss'
 
 function Nature () {
+  const { t } = useTranslation()
   return (
     <div className={styles.page}>
-      <div>
-        <h2 className='text-3xl font-medium'>Сары-Челектин табияты</h2>
+      <h2 className='text-3xl font-medium'>{t('of')}</h2>
+      <div className='ml-25'>
         <div className='flex gap-35 mt-10'>
-        <p className='w-200 mt-15 text-xl'>
-          📍 Сары-Челек кайда жайгашкан? Сары-Челек көлү Жалал-Абад облусундагы
-          Ала-Бука жана Чаткал райондорунун ортосунда, Сары-Челек мамлекеттик
-          биосфера коругунун аймагында жайгашкан. Бийик тоолордун арасында,
-          деңиз деңгээлинен 1873 метр бийиктикте орун алган.
-        </p>
-        <img 
-        className='w-55 h-35  rounded-2xl relative top-10'
-        src="https://dwc.kg/wp-content/uploads/2023/10/scale_1200-1-optimized.jpeg" alt="" />
+          <p className='w-200 mt-15 text-xl'>{t('located')}</p>
+          <img
+            className='w-55 h-35  rounded-2xl relative top-10'
+            src='https://manas.su/assets/images/see_place/Sary-chelek.jpg'
+            alt=''
+          />
         </div>
         <div className='flex gap-35 mt-10'>
-          <img 
-          className='w-55 h-35  rounded-2xl relative top-10'
-          src="https://manas.su/assets/images/see_place/Sary-chelek.jpg" alt="" />
-        <p className='w-200 mt-15 text-xl relative'>
-          🌿 Жаратылышы жана кооздугу Сары-Челектин табияты өзгөчө: Көл
-          мөңгүлөрдөн жана башаты бар булактардан толуп турат. Аны курчап турган
-          бийик карагайлар, тиштенген аскалар жана жаңы жыттанган тоо гүлдөрү
-          бул жерди улам керемет кылат. Суу тунук, тереңдиги кээ бир жерлерде
-          234 метрге чейин жетет! Көлдүн жээгинде суу өсүмдүктөрү, кээде ак куу,
-          өрдөктөр, балык түрлөрү кездешет.
-        </p>
+          <img
+            className='w-55 h-35  rounded-2xl relative top-10'
+            src='https://www.centralasia-travel.com/upload/tiles/sari-chelek-mice-708.jpg'
+            alt=''
+          />
+          <p className='w-200 mt-15 text-xl'>{t('unique')}</p>
         </div>
-        <p className='w-200 mt-15 text-xl'>
-          🐻 Фаунасы – жаныбарлар дүйнөсү Корук болгондуктан, бул жерде жапайы
-          жаныбарлар көп: Аюу, аркар, кулжа, түлкү, жана кээде бүркүт сыяктуу
-          жырткыч куштар. 150дөн ашык канаттуулардын түрү, анын ичинде сейрек
-          кездешкендери да бар.
-        </p>
-        <p className='w-200 mt-15 text-xl relative left-150'>
-          🌱 Флорасы – өсүмдүктөр дүйнөсү Корукта 1 000ден ашык өсүмдүк түрү
-          бар. Айрыкча: Тянь-Шань карагайы Арча, бал чайыры Асык от, табигый
-          дарылык чөптөр
-        </p>
-        <p className='w-200 mt-15 text-xl'>
-          🏞️ Тарыхы жана статусу 1959-жылы Сары-Челек мамлекеттик корук болуп
-          жарыяланган. ЮНЕСКО тарабынан биосфера коругу макамын алган – бул
-          дүйнөлүк деңгээлдеги баалуулук экенин билдирет.
-        </p>
-        <p className='w-200 mt-15 text-xl relative left-150'>
-          🚶‍♂️ Эмне үчүн барса болот? Туризм үчүн – жөө жүрүш (треккинг),
-          экскурсия, фото аңчылык, таза аба, эс алуу. Илимпоздор үчүн – сейрек
-          кездешкен өсүмдүктөрдү жана жаныбарларды изилдөө.
-        </p>
+        <div className='flex gap-35 mt-10'>
+          <p className='w-200 mt-15 text-xl'>{t('abundance')}</p>
+          <img
+            className='w-55 h-35  rounded-2xl relative top-10'
+            src='https://i.ytimg.com/vi/3oMzYNjDguY/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBOWhevRiAso2SFeXp2AYdonXLY1A'
+            alt=''
+          />
+        </div>
+        <div className='flex gap-35 mt-10'>
+          <img
+            className='w-55 h-35  rounded-2xl relative top-10'
+            src='https://eastroute.com/wp-content/uploads/2019/06/Mt-Cook-Lily-and-Mt-Cook-Fraser-Gunn_croped.jpg'
+            alt=''
+          />
+          <p className='w-200 mt-15 text-xl'>{t('contains')}</p>
+        </div>
+        <div className='flex gap-35 mt-10'>
+          <p className='w-200 mt-15 text-xl'>{t('designated')}</p>
+          <img
+            className='w-55 h-35  rounded-2xl relative top-10'
+            src='https://cdn-1.aki.kg/cdn-st-0/qdN/L/2018998.deeff05c72df71e082faeb9fa6680150.500.jpg'
+            alt=''
+          />
+        </div>
+        <div className='flex gap-35 mt-10'>
+          <img
+            className='w-55 h-35  rounded-2xl relative top-10'
+            src='https://akademiya-gornih-turov.ru/wp-content/uploads/free/fons/other/set00/free-fons-other-set00-05.jpg'
+            alt=''
+          />
+          <p className='w-200 mt-15 text-xl'>{t('hiking')}</p>
+        </div>
       </div>
     </div>
   )

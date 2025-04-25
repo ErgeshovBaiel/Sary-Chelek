@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination, Autoplay } from 'swiper/modules'
 import 'swiper/css'
@@ -6,6 +7,7 @@ import 'swiper/css/pagination'
 import styles from './Page.module.scss'
 
 function Gallery () {
+  const { t } = useTranslation()
   const images = [
     'https://dwc.kg/wp-content/uploads/2023/10/scale_1200-1-optimized.jpeg',
     'https://www.travelkyrgyzstan.kg/wp-content/uploads/2021/07/sary-chelek_1.jpg',
@@ -24,11 +26,8 @@ function Gallery () {
   return (
     <div className={styles.page}>
       <div>
-        <h2 className='text-3xl font-medium'>Сары-Челектин сүрөттөру</h2>
-        <p className='text-2xl font-medium mt-5'>
-          Бул жакта Сары-Челек аймагынан тартылган кооз сүрөттөр жайгашкан.
-        </p>
-
+        <h2 className='text-3xl font-medium'>{t('photos')}</h2>
+        <p className='text-2xl font-medium mt-5'>{t('pictures')}</p>
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}
           navigation
