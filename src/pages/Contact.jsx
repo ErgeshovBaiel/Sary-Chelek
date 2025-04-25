@@ -6,11 +6,11 @@ function Contact () {
   return (
     <div className={styles.page}>
       <div>
-        <h2 className='text-3xl font-medium'>{t('visiting')}</h2>
-        <p className='w-200 mt-15 text-xl'>{t('specialize')}</p>
-        <p className='w-200 mt-15 text-xl relative left-150'>{t('guides')}</p>
-        <p className='w-200 mt-15 text-xl'>{t('forget')}</p>
-        <p className='w-200 mt-15 text-xl relative left-150'>{t('tour')}</p>
+        <h2 className='text-3xl font-medium italic'>{t('visiting')}</h2>
+        <p className='w-200 mt-15 text-xl italic'>{t('specialize')}</p>
+        <p className='w-200 mt-15 text-xl italic relative left-150'>{t('guides')}</p>
+        <p className='w-200 mt-15 text-xl italic'>{t('forget')}</p>
+        <p className='w-200 mt-15 text-xl italic relative left-150'>{t('tour')}</p>
       </div>
     </div>
   )

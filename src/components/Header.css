@@ -1,0 +1,14 @@
+@keyframes bounce-char {
+  100% {
+    top: -20px;
+  }
+}
+.animate-bounce-char {
+  position: relative;
+  top: 20px;
+  display: inline-block;
+  font-size: 30px;
+  font-style: italic;
+  color: white;
+  animation: bounce-char 0.8s ease infinite alternate;
+}

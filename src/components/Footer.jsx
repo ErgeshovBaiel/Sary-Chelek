@@ -1,11 +1,11 @@
 import { useTranslation } from 'react-i18next'
-import styles from './Footer.module.scss'
+import './Footer.css'
 
 function Footer () {
   const { t } = useTranslation()
 
   return (
-    <footer className={styles.footer}>
+    <footer className="footer">
       <p>{t('rights')}</p>
     </footer>
   )

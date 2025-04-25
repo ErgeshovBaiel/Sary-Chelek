@@ -6,13 +6,13 @@ function About () {
   return (
     <div className={styles.page}>
       <div>
-        <h2 className='text-3xl font-medium'>{t('information')}</h2>
-        <p className='w-200 mt-15 text-xl'>{t('full')}</p>
-        <p className='w-200 mt-15 text-xl relative left-150'>{t('natural')}</p>
-        <p className='w-200 mt-15 text-xl'>{t('research')}</p>
-        <p className='w-200 mt-15 text-xl relative left-150'>{t('horseback')}</p>
-        <p className='w-200 mt-15 text-xl'>{t('rules')}</p>
-        <p className='w-200 mt-15 text-xl relative left-150'>{t('acquainted')}</p>
+        <h2 className='text-3xl font-medium italic'>{t('information')}</h2>
+        <p className='w-200 mt-15 text-xl italic'>{t('full')}</p>
+        <p className='w-200 mt-15 text-xl italic relative left-150'>{t('natural')}</p>
+        <p className='w-200 mt-15 text-xl italic'>{t('research')}</p>
+        <p className='w-200 mt-15 text-xl italic relative left-150'>{t('horseback')}</p>
+        <p className='w-200 mt-15 text-xl italic'>{t('rules')}</p>
+        <p className='w-200 mt-15 text-xl italic relative left-150'>{t('acquainted')}</p>
       </div>
     </div>
   )

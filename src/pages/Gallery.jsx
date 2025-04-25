@@ -26,8 +26,8 @@ function Gallery () {
   return (
     <div className={styles.page}>
       <div>
-        <h2 className='text-3xl font-medium'>{t('photos')}</h2>
-        <p className='text-2xl font-medium mt-5'>{t('pictures')}</p>
+        <h2 className='text-3xl font-medium italic'>{t('photos')}</h2>
+        <p className='text-2xl font-medium italic mt-5'>{t('pictures')}</p>
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}
           navigation

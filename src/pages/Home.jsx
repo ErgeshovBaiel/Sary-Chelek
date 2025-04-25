@@ -12,8 +12,8 @@ function Home () {
 
   return (
     <div className={styles.page}>
-      <h2 className='text-3xl font-medium'>{t('welcome to sary-chelek')}</h2>
-      <p className='text-2xl mt-5 font-medium'>{t('beautiful')}</p>
+      <h2 className='text-3xl font-medium italic'>{t('welcome to sary-chelek')}</h2>
+      <p className='text-2xl mt-5 font-medium italic'>{t('beautiful')}</p>
       <img
         className={styles.image}
         src='https://concept.kg/media/cache/3b/1c/3b1c199419217bbce8f50f065db361b1.jpg'
