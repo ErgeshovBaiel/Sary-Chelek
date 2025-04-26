@@ -38,7 +38,7 @@ function Header () {
           />
           <p
             className='font-medium text-[19px] cursor-pointer 
-            relative top-6.75 left-270 italic'
+            relative top-6 left-270 italic'
             onClick={changeLanguage}
           >
             {t('language')}
