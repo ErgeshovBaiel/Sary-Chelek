@@ -5,17 +5,17 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-  "start": "react-scripts start",
-  "build": "react-scripts build",
-  "predeploy": "npm run build",
-  "deploy": "gh-pages -d build",
-  "lint": "eslint .",
-  "preview": "vite preview",
-  "dev": "vite"
-
-},
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "dev": "vite"
+  },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.4",
+    "framer-motion": "^12.9.2",
     "gh-pages": "^6.3.0",
     "i18next": "^25.0.1",
     "i18next-browser-languagedetector": "^8.0.5",

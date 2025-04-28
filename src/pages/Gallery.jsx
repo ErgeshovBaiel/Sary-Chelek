@@ -1,13 +1,16 @@
 import { useTranslation } from 'react-i18next'
+import { useEffect } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination, Autoplay } from 'swiper/modules'
+import { motion } from 'framer-motion'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
-import styles from './Page.module.scss'
+import './Page.scss'
 
 function Gallery () {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+
   const images = [
     'https://dwc.kg/wp-content/uploads/2023/10/scale_1200-1-optimized.jpeg',
     'https://www.travelkyrgyzstan.kg/wp-content/uploads/2021/07/sary-chelek_1.jpg',
@@ -23,11 +26,44 @@ function Gallery () {
     'https://www.centralasia-travel.com/uploads/gallery/1010/sari-chelek-27.jpg'
   ]
 
+  const textVariants = {
+    hidden: { opacity: 0, y: -30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.7 } }
+  }
+
+  const changeLanguage = (newLang) => {
+    i18n.changeLanguage(newLang)
+    localStorage.setItem('language', newLang)
+  }
+
+  // Effect to load the saved language from localStorage when the component mounts
+  useEffect(() => {
+    const savedLang = localStorage.getItem('language')
+    if (savedLang) {
+      i18n.changeLanguage(savedLang)
+    }
+  }, [i18n])
+
   return (
-    <div className={styles.page}>
+    <div className="page">
       <div>
-        <h2 className='text-3xl font-medium italic'>{t('photos')}</h2>
-        <p className='text-2xl font-medium italic mt-5'>{t('pictures')}</p>
+        <motion.h2
+          className='text-3xl font-medium italic'
+          initial="hidden"
+          animate="visible"
+          variants={textVariants}
+        >
+          {t('photos')}
+        </motion.h2>
+        <motion.p
+          className='text-2xl font-medium italic mt-5'
+          initial="hidden"
+          animate="visible"
+          variants={textVariants}
+        >
+          {t('pictures')}
+        </motion.p>
+
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}
           navigation
@@ -38,14 +74,20 @@ function Gallery () {
           }}
           spaceBetween={30}
           slidesPerView={1}
-          className={styles.swiper}
+          className="swiper"
         >
           {images.map((src, index) => (
             <SwiperSlide key={index}>
-              <img src={src} alt={`Gallery ${index}`} className={styles.img} />
+              <img src={src} alt={`Gallery ${index}`} className="img"/>
             </SwiperSlide>
           ))}
         </Swiper>
+      </div>
+
+      <div className="language-switcher">
+        <button onClick={() => changeLanguage('ru')}>RU</button>
+        <button onClick={() => changeLanguage('en')}>EN</button>
+        <button onClick={() => changeLanguage('kg')}>KG</button>
       </div>
     </div>
   )
