@@ -41,7 +41,7 @@ function HowToGo () {
   return (
     <div className="page">
       <motion.h2
-        className='text-3xl font-medium italic'
+        className='text-2xl sm:text-3xl md:text-4xl font-medium italic px-4'
         initial="hidden"
         animate="visible"
         custom={0}
@@ -53,7 +53,9 @@ function HowToGo () {
       {texts.map((item, index) => (
         <motion.p
           key={item.key}
-          className={item.className}
+          className={`text-base sm:text-lg md:text-xl italic mt-8 sm:mt-12 md:mt-15 px-4 ${
+            index === 1 ? 'md:ml-32 lg:ml-40' : ''
+          }`}
           initial="hidden"
           animate="visible"
           custom={index + 1}
@@ -63,21 +65,37 @@ function HowToGo () {
         </motion.p>
       ))}
 
-      <div className='w-full' style={{ marginTop: '5rem' }}>
+      <div className='w-full px-4' style={{ marginTop: '3rem' }}>
         <iframe
           src='https://yandex.com/map-widget/v1/?ll=71.9364%2C41.8474&z=10&l=map'
-          className='w-full'
-          height='600'
+          className='w-full rounded-lg'
+          height='400'
+          style={{ height: '400px', minHeight: '300px' }}
           frameBorder='0'
           allowFullScreen
           title='Sary-Chelek map'
         ></iframe>
       </div>
 
-      <div className="language-switcher">
-        <button onClick={() => changeLanguage('ru')}>RU</button>
-        <button onClick={() => changeLanguage('en')}>EN</button>
-        <button onClick={() => changeLanguage('kg')}>KG</button>
+      <div className="language-switcher flex flex-wrap gap-3 sm:gap-4 mt-8 justify-center px-4">
+        <button 
+          className="px-4 sm:px-6 py-2 rounded-full text-sm sm:text-base font-semibold shadow-md bg-[#00695c] text-white hover:bg-[#004d40] transition-colors"
+          onClick={() => changeLanguage('ru')}
+        >
+          RU
+        </button>
+        <button 
+          className="px-4 sm:px-6 py-2 rounded-full text-sm sm:text-base font-semibold shadow-md bg-[#00695c] text-white hover:bg-[#004d40] transition-colors"
+          onClick={() => changeLanguage('en')}
+        >
+          EN
+        </button>
+        <button 
+          className="px-4 sm:px-6 py-2 rounded-full text-sm sm:text-base font-semibold shadow-md bg-[#00695c] text-white hover:bg-[#004d40] transition-colors"
+          onClick={() => changeLanguage('kg')}
+        >
+          KG
+        </button>
       </div>
     </div>
   )

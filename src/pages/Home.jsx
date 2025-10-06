@@ -27,7 +27,7 @@ function Home () {
   return (
     <div className="page">
       <motion.h2
-        className='text-3xl font-medium italic'
+        className='text-2xl sm:text-3xl md:text-4xl font-medium italic px-4'
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
@@ -36,7 +36,7 @@ function Home () {
       </motion.h2>
 
       <motion.p
-        className='text-2xl mt-5 font-medium italic'
+        className='text-lg sm:text-xl md:text-2xl mt-4 sm:mt-5 font-medium italic px-4'
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 0.5 }}
@@ -45,7 +45,7 @@ function Home () {
       </motion.p>
 
       <img
-        className="image"
+        className="image w-full max-w-[90%] sm:max-w-[80%] md:max-w-[900px] h-auto sm:h-[400px] md:h-[600px]"
         src='https://concept.kg/media/cache/3b/1c/3b1c199419217bbce8f50f065db361b1.jpg'
         alt='Сары-Челек'
       />

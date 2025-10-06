@@ -42,9 +42,8 @@ function Header() {
     isActive ? 'activeLink nav-link' : 'nav-link';
 
   return (
-    <header className={`w-full fixed top-0 left-0 z-50 bg-[#00695c] shadow-md text-white transition-all duration-300 ${
-      isScrolled ? 'py-2' : 'py-4'
-    }`}>
+    <header className={`w-full fixed top-0 left-0 z-50 bg-[#00695c] shadow-md text-white transition-all duration-300 ${isScrolled ? 'py-2' : 'py-4'
+      }`}>
       <div className="max-w-screen-xl mx-auto flex flex-wrap items-center justify-between px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-2 sm:gap-4">
           <button
@@ -98,9 +97,8 @@ function Header() {
 
         {/* Mobile Menu */}
         <div
-          className={`${
-            isMenuOpen ? 'block' : 'hidden'
-          } w-full md:hidden mt-4`}
+          className={`${isMenuOpen ? 'block' : 'hidden'
+            } w-full md:hidden mt-4`}
         >
           <nav className="flex flex-col gap-4 text-base font-normal italic">
             {[
@@ -125,6 +123,14 @@ function Header() {
                 {item.text}
               </NavLink>
             ))}
+            <button
+              className="font-medium text-base cursor-pointer italic bg-[#004d40] hover:bg-[#00796b] py-2 px-4 rounded-md transition-colors mt-2"
+              onClick={changeLanguage}
+              aria-label={t('change_language')}
+              type="button"
+            >
+              {t('language')}
+            </button>
           </nav>
         </div>
 
@@ -151,6 +157,14 @@ function Header() {
           <NavLink to="/contact" className={getActiveClass}>
             {t('contact')}
           </NavLink>
+          <button
+            className="font-medium text-base lg:text-lg cursor-pointer italic bg-transparent border-none outline-none hover:opacity-80 transition-opacity"
+            onClick={changeLanguage}
+            aria-label={t('change_language')}
+            type="button"
+          >
+            {t('language')}
+          </button>
         </nav>
       </div>
     </header>

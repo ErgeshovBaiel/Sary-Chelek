@@ -41,11 +41,17 @@ function Contact () {
 
   return (
     <div className='page'>
-      <div>
+      <div className="px-4">
         {texts.map((item, index) => (
           <motion.p
             key={item.text}
-            className={`text-3xl ${index === 0 ? 'font-medium' : 'w-200 text-xl'} italic mt-15 ${item.extraClass}`}
+            className={`${
+              index === 0 
+                ? 'text-2xl sm:text-3xl md:text-4xl font-medium' 
+                : 'text-base sm:text-lg md:text-xl'
+            } italic mt-8 sm:mt-12 md:mt-15 ${
+              index === 2 || index === 4 ? 'md:ml-32 lg:ml-40' : ''
+            }`}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -57,10 +63,25 @@ function Contact () {
         ))}
       </div>
 
-      <div className="language-switcher">
-        <button onClick={() => changeLanguage('ru')}>RU</button>
-        <button onClick={() => changeLanguage('en')}>EN</button>
-        <button onClick={() => changeLanguage('kg')}>KG</button>
+      <div className="language-switcher flex flex-wrap gap-3 sm:gap-4 mt-8 justify-center px-4">
+        <button 
+          className="px-4 sm:px-6 py-2 rounded-full text-sm sm:text-base font-semibold shadow-md bg-[#00695c] text-white hover:bg-[#004d40] transition-colors"
+          onClick={() => changeLanguage('ru')}
+        >
+          RU
+        </button>
+        <button 
+          className="px-4 sm:px-6 py-2 rounded-full text-sm sm:text-base font-semibold shadow-md bg-[#00695c] text-white hover:bg-[#004d40] transition-colors"
+          onClick={() => changeLanguage('en')}
+        >
+          EN
+        </button>
+        <button 
+          className="px-4 sm:px-6 py-2 rounded-full text-sm sm:text-base font-semibold shadow-md bg-[#00695c] text-white hover:bg-[#004d40] transition-colors"
+          onClick={() => changeLanguage('kg')}
+        >
+          KG
+        </button>
       </div>
     </div>
   )

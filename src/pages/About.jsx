@@ -55,13 +55,13 @@ function About() {
       transition={{ duration: 0.7 }}
     >
       <motion.div
-        className="w-full max-w-3xl bg-white bg-opacity-80 rounded-xl shadow-lg p-10"
+        className="w-full max-w-3xl bg-white bg-opacity-80 rounded-xl shadow-lg p-4 sm:p-6 md:p-8 lg:p-10 mx-4"
         initial={{ scale: 0.95, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.7, delay: 0.2 }}
       >
         <motion.h2
-          className="text-4xl font-bold italic text-[#00695c] mb-8 text-center"
+          className="text-2xl sm:text-3xl md:text-4xl font-bold italic text-[#00695c] mb-6 sm:mb-8 text-center"
           initial="hidden"
           animate="visible"
           custom={0}
@@ -73,8 +73,8 @@ function About() {
         {infoKeys.map((key, index) => (
           <motion.p
             key={key}
-            className={`text-lg md:text-xl italic mb-7 px-2 ${
-              index % 2 !== 0 ? 'md:pl-24 text-right' : 'md:pr-24 text-left'
+            className={`text-base sm:text-lg md:text-xl italic mb-4 sm:mb-5 md:mb-7 px-2 ${
+              index % 2 !== 0 ? 'md:pl-12 lg:pl-24 text-left md:text-right' : 'md:pr-12 lg:pr-24 text-left'
             }`}
             initial="hidden"
             animate="visible"
@@ -87,7 +87,7 @@ function About() {
       </motion.div>
 
       <motion.div
-        className="language-switcher flex gap-4 mt-10"
+        className="language-switcher flex flex-wrap gap-3 sm:gap-4 mt-6 sm:mt-8 md:mt-10 justify-center px-4"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.7, duration: 0.6 }}
@@ -96,7 +96,7 @@ function About() {
           <motion.button
             key={lang}
             onClick={() => changeLanguage(lang)}
-            className={`px-6 py-2 rounded-full font-semibold shadow-md transition-colors duration-200 ${
+            className={`px-4 sm:px-6 py-2 rounded-full text-sm sm:text-base font-semibold shadow-md transition-colors duration-200 ${
               i18n.language === lang
                 ? 'bg-[#00695c] text-white'
                 : 'bg-white text-[#00695c] hover:bg-[#b2dfdb]'

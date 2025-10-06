@@ -57,7 +57,7 @@ function Gallery() {
       transition={{ duration: 0.7 }}
     >
       <motion.h2
-        className="text-4xl font-bold italic text-[#00695c] mb-4 text-center"
+        className="text-2xl sm:text-3xl md:text-4xl font-bold italic text-[#00695c] mb-4 text-center px-4"
         initial="hidden"
         animate="visible"
         variants={textVariants}
@@ -65,7 +65,7 @@ function Gallery() {
         {t('photos')}
       </motion.h2>
       <motion.p
-        className="text-2xl font-medium italic mt-2 mb-8 text-center"
+        className="text-lg sm:text-xl md:text-2xl font-medium italic mt-2 mb-6 sm:mb-8 text-center px-4"
         initial="hidden"
         animate="visible"
         variants={textVariants}
@@ -74,7 +74,7 @@ function Gallery() {
       </motion.p>
 
       <motion.div
-        className="w-full max-w-3xl mx-auto mb-10"
+        className="w-full max-w-3xl mx-auto mb-6 sm:mb-8 md:mb-10 px-4"
         initial={{ scale: 0.95, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.7, delay: 0.2 }}
@@ -83,10 +83,7 @@ function Gallery() {
           modules={[Navigation, Pagination, Autoplay]}
           navigation
           pagination={{ clickable: true }}
-          autoplay={{
-            delay: 3000,
-            disableOnInteraction: false
-          }}
+          autoplay={{ delay: 3000, disableOnInteraction: false }}
           spaceBetween={30}
           slidesPerView={1}
           className="swiper"
@@ -96,7 +93,7 @@ function Gallery() {
               <motion.img
                 src={src}
                 alt={`Gallery ${index}`}
-                className="img rounded-2xl shadow-lg object-cover w-full h-96"
+                className="img rounded-2xl shadow-lg object-cover w-full h-64 sm:h-80 md:h-96"
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.7 }}
@@ -107,7 +104,7 @@ function Gallery() {
       </motion.div>
 
       <motion.div
-        className="language-switcher flex gap-4 mt-4"
+        className="language-switcher flex flex-wrap gap-3 sm:gap-4 mt-4 sm:mt-6 md:mt-8 justify-center px-4"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.7, duration: 0.6 }}
@@ -116,7 +113,7 @@ function Gallery() {
           <motion.button
             key={lang}
             onClick={() => changeLanguage(lang)}
-            className={`px-6 py-2 rounded-full font-semibold shadow-md transition-colors duration-200 ${
+            className={`px-4 sm:px-6 py-2 rounded-full text-sm sm:text-base font-semibold shadow-md transition-colors duration-200 ${
               i18n.language === lang
                 ? 'bg-[#00695c] text-white'
                 : 'bg-white text-[#00695c] hover:bg-[#b2dfdb]'

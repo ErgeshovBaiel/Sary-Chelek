@@ -69,7 +69,7 @@ function Nature() {
       transition={{ duration: 0.7 }}
     >
       <motion.h2
-        className="text-4xl font-bold italic text-[#00695c] mb-8 text-center"
+        className="text-2xl sm:text-3xl md:text-4xl font-bold italic text-[#00695c] mb-6 sm:mb-8 text-center px-4"
         initial="hidden"
         animate="visible"
         custom={0}
@@ -78,17 +78,17 @@ function Nature() {
         {t('of')}
       </motion.h2>
 
-      <div className="w-full max-w-4xl mx-auto flex flex-col gap-10">
+      <div className="w-full max-w-4xl mx-auto flex flex-col gap-6 sm:gap-8 md:gap-10 px-4">
         {items.map((item, index) => (
           <div
             key={item.text}
-            className={`flex flex-col md:flex-row items-center gap-10 md:gap-20 ${
+            className={`flex flex-col md:flex-row items-center gap-6 sm:gap-8 md:gap-12 lg:gap-20 ${
               index % 2 === 0 ? '' : 'md:flex-row-reverse'
             }`}
           >
             {item.textFirst && (
               <motion.p
-                className="text-lg md:text-xl italic mb-4 md:mb-0 md:w-1/2"
+                className="text-base sm:text-lg md:text-xl italic mb-4 md:mb-0 md:w-1/2 text-center md:text-left"
                 initial="hidden"
                 animate="visible"
                 custom={index + 1}
@@ -99,7 +99,7 @@ function Nature() {
             )}
 
             <motion.img
-              className="w-full md:w-96 h-56 object-cover rounded-2xl shadow-lg"
+              className="w-full sm:w-4/5 md:w-96 h-48 sm:h-56 object-cover rounded-2xl shadow-lg"
               src={item.img}
               alt={t(item.text)}
               initial="hidden"
@@ -110,7 +110,7 @@ function Nature() {
 
             {!item.textFirst && (
               <motion.p
-                className="text-lg md:text-xl italic mb-4 md:mb-0 md:w-1/2"
+                className="text-base sm:text-lg md:text-xl italic mb-4 md:mb-0 md:w-1/2 text-center md:text-left"
                 initial="hidden"
                 animate="visible"
                 custom={index + 1}
@@ -124,7 +124,7 @@ function Nature() {
       </div>
 
       <motion.div
-        className="language-switcher flex gap-4 mt-10"
+        className="language-switcher flex flex-wrap gap-3 sm:gap-4 mt-6 sm:mt-8 md:mt-10 justify-center px-4"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.7, duration: 0.6 }}
@@ -133,7 +133,7 @@ function Nature() {
           <motion.button
             key={lang}
             onClick={() => changeLanguage(lang)}
-            className={`px-6 py-2 rounded-full font-semibold shadow-md transition-colors duration-200 ${
+            className={`px-4 sm:px-6 py-2 rounded-full text-sm sm:text-base font-semibold shadow-md transition-colors duration-200 ${
               i18n.language === lang
                 ? 'bg-[#00695c] text-white'
                 : 'bg-white text-[#00695c] hover:bg-[#b2dfdb]'
@@ -142,7 +142,6 @@ function Nature() {
             initial="initial"
             whileHover="hover"
             whileTap="tap"
-            aria-label={`Switch to ${lang.toUpperCase()}`}
           >
             {lang.toUpperCase()}
           </motion.button>
