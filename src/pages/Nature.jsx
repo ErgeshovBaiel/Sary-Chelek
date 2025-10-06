@@ -1,22 +1,22 @@
-import { motion } from 'framer-motion'
-import { useTranslation } from 'react-i18next'
-import { useEffect } from 'react'
-import './Page.scss'
+import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
+import { useEffect } from 'react';
+import './Page.scss';
 
-function Nature () {
-  const { t, i18n } = useTranslation()
+function Nature() {
+  const { t, i18n } = useTranslation();
 
   const changeLanguage = (newLang) => {
-    i18n.changeLanguage(newLang)
-    localStorage.setItem('language', newLang)
-  }
+    i18n.changeLanguage(newLang);
+    localStorage.setItem('language', newLang);
+  };
 
   useEffect(() => {
-    const savedLang = localStorage.getItem('language')
-    if (savedLang) {
-      i18n.changeLanguage(savedLang)
+    const savedLang = localStorage.getItem('language');
+    if (savedLang && savedLang !== i18n.language) {
+      i18n.changeLanguage(savedLang);
     }
-  }, [i18n]) 
+  }, [i18n]);
 
   const textVariants = {
     hidden: { opacity: 0, x: -50 },
@@ -24,11 +24,13 @@ function Nature () {
       opacity: 1,
       x: 0,
       transition: {
-        delay: i * 0.3,
-        duration: 0.6
-      }
-    })
-  }
+        delay: i * 0.2,
+        duration: 0.6,
+        type: 'spring',
+        stiffness: 60,
+      },
+    }),
+  };
 
   const imageVariants = {
     hidden: { opacity: 0, x: 50 },
@@ -36,16 +38,38 @@ function Nature () {
       opacity: 1,
       x: 0,
       transition: {
-        delay: i * 0.3,
-        duration: 0.6
-      }
-    })
-  }
+        delay: i * 0.2,
+        duration: 0.6,
+        type: 'spring',
+        stiffness: 60,
+      },
+    }),
+  };
+
+  const buttonVariants = {
+    initial: { scale: 1 },
+    hover: { scale: 1.1, boxShadow: '0px 4px 16px rgba(0,0,0,0.15)' },
+    tap: { scale: 0.95 },
+  };
+
+  const items = [
+    { text: 'located', img: 'https://manas.su/assets/images/see_place/Sary-chelek.jpg', textFirst: true },
+    { text: 'unique', img: 'https://www.centralasia-travel.com/upload/tiles/sari-chelek-mice-708.jpg', textFirst: false },
+    { text: 'abundance', img: 'https://i.ytimg.com/vi/3oMzYNjDguY/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBOWhevRiAso2SFeXp2AYdonXLY1A', textFirst: true },
+    { text: 'contains', img: 'https://eastroute.com/wp-content/uploads/2019/06/Mt-Cook-Lily-and-Mt-Cook-Fraser-Gunn_croped.jpg', textFirst: false },
+    { text: 'designated', img: 'https://cdn-1.aki.kg/cdn-st-0/qdN/L/2018998.deeff05c72df71e082faeb9fa6680150.500.jpg', textFirst: true },
+    { text: 'hiking', img: 'https://akademiya-gornih-turov.ru/wp-content/uploads/free/fons/other/set00/free-fons-other-set00-05.jpg', textFirst: false }
+  ];
 
   return (
-    <div className="page">
+    <motion.div
+      className="page flex flex-col items-center min-h-screen py-12 bg-gradient-to-b from-[#e0f7fa] to-[#b2dfdb]"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.7 }}
+    >
       <motion.h2
-        className='text-3xl font-medium italic'
+        className="text-4xl font-bold italic text-[#00695c] mb-8 text-center"
         initial="hidden"
         animate="visible"
         custom={0}
@@ -54,19 +78,17 @@ function Nature () {
         {t('of')}
       </motion.h2>
 
-      <div className='ml-25'>
-        {[
-          { text: 'located', img: 'https://manas.su/assets/images/see_place/Sary-chelek.jpg', textFirst: true },
-          { text: 'unique', img: 'https://www.centralasia-travel.com/upload/tiles/sari-chelek-mice-708.jpg', textFirst: false },
-          { text: 'abundance', img: 'https://i.ytimg.com/vi/3oMzYNjDguY/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBOWhevRiAso2SFeXp2AYdonXLY1A', textFirst: true },
-          { text: 'contains', img: 'https://eastroute.com/wp-content/uploads/2019/06/Mt-Cook-Lily-and-Mt-Cook-Fraser-Gunn_croped.jpg', textFirst: false },
-          { text: 'designated', img: 'https://cdn-1.aki.kg/cdn-st-0/qdN/L/2018998.deeff05c72df71e082faeb9fa6680150.500.jpg', textFirst: true },
-          { text: 'hiking', img: 'https://akademiya-gornih-turov.ru/wp-content/uploads/free/fons/other/set00/free-fons-other-set00-05.jpg', textFirst: false }
-        ].map((item, index) => (
-          <div key={item.text} className='flex gap-35 mt-10'>
+      <div className="w-full max-w-4xl mx-auto flex flex-col gap-10">
+        {items.map((item, index) => (
+          <div
+            key={item.text}
+            className={`flex flex-col md:flex-row items-center gap-10 md:gap-20 ${
+              index % 2 === 0 ? '' : 'md:flex-row-reverse'
+            }`}
+          >
             {item.textFirst && (
               <motion.p
-                className='w-200 mt-15 text-xl italic'
+                className="text-lg md:text-xl italic mb-4 md:mb-0 md:w-1/2"
                 initial="hidden"
                 animate="visible"
                 custom={index + 1}
@@ -77,9 +99,9 @@ function Nature () {
             )}
 
             <motion.img
-              className='w-55 h-35 rounded-2xl relative top-10'
+              className="w-full md:w-96 h-56 object-cover rounded-2xl shadow-lg"
               src={item.img}
-              alt=''
+              alt={t(item.text)}
               initial="hidden"
               animate="visible"
               custom={index + 1}
@@ -88,7 +110,7 @@ function Nature () {
 
             {!item.textFirst && (
               <motion.p
-                className='w-200 mt-15 text-xl italic'
+                className="text-lg md:text-xl italic mb-4 md:mb-0 md:w-1/2"
                 initial="hidden"
                 animate="visible"
                 custom={index + 1}
@@ -101,13 +123,33 @@ function Nature () {
         ))}
       </div>
 
-      <div className="language-switcher">
-        <button onClick={() => changeLanguage('ru')}>RU</button>
-        <button onClick={() => changeLanguage('en')}>EN</button>
-        <button onClick={() => changeLanguage('kg')}>KG</button>
-      </div>
-    </div>
-  )
+      <motion.div
+        className="language-switcher flex gap-4 mt-10"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.7, duration: 0.6 }}
+      >
+        {['ru', 'en', 'kg'].map((lang) => (
+          <motion.button
+            key={lang}
+            onClick={() => changeLanguage(lang)}
+            className={`px-6 py-2 rounded-full font-semibold shadow-md transition-colors duration-200 ${
+              i18n.language === lang
+                ? 'bg-[#00695c] text-white'
+                : 'bg-white text-[#00695c] hover:bg-[#b2dfdb]'
+            }`}
+            variants={buttonVariants}
+            initial="initial"
+            whileHover="hover"
+            whileTap="tap"
+            aria-label={`Switch to ${lang.toUpperCase()}`}
+          >
+            {lang.toUpperCase()}
+          </motion.button>
+        ))}
+      </motion.div>
+    </motion.div>
+  );
 }
 
-export default Nature
+export default Nature;

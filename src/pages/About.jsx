@@ -1,40 +1,67 @@
-import { motion } from 'framer-motion'
-import { useTranslation } from 'react-i18next'
-import { useEffect } from 'react'
-import './Page.scss'
+import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
+import { useEffect } from 'react';
+import './Page.scss';
 
-function About () {
-  const { t, i18n } = useTranslation()
+function About() {
+  const { t, i18n } = useTranslation();
 
   const textVariants = {
-    hidden: { opacity: 0, y: 50 },
+    hidden: { opacity: 0, y: 40 },
     visible: (i = 1) => ({
       opacity: 1,
       y: 0,
       transition: {
-        delay: i * 0.3,
-        duration: 0.6
-      }
-    })
-  }
+        delay: i * 0.2,
+        duration: 0.6,
+        type: 'spring',
+        stiffness: 60,
+      },
+    }),
+  };
+
+  const buttonVariants = {
+    initial: { scale: 1 },
+    hover: { scale: 1.1, boxShadow: '0px 4px 16px rgba(0,0,0,0.15)' },
+    tap: { scale: 0.95 },
+  };
 
   const changeLanguage = (newLang) => {
-    i18n.changeLanguage(newLang)
-    localStorage.setItem('language', newLang)
-  }
+    i18n.changeLanguage(newLang);
+    localStorage.setItem('language', newLang);
+  };
 
   useEffect(() => {
-    const savedLang = localStorage.getItem('language')
-    if (savedLang) {
-      i18n.changeLanguage(savedLang)
+    const savedLang = localStorage.getItem('language');
+    if (savedLang && savedLang !== i18n.language) {
+      i18n.changeLanguage(savedLang);
     }
-  }, [i18n])
+  }, [i18n]);
+
+  const infoKeys = [
+    'full',
+    'natural',
+    'research',
+    'horseback',
+    'rules',
+    'acquainted',
+  ];
 
   return (
-    <div className="page">
-      <div>
+    <motion.div
+      className="page flex flex-col items-center min-h-screen py-12 bg-gradient-to-b from-[#e0f7fa] to-[#b2dfdb]"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.7 }}
+    >
+      <motion.div
+        className="w-full max-w-3xl bg-white bg-opacity-80 rounded-xl shadow-lg p-10"
+        initial={{ scale: 0.95, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 0.7, delay: 0.2 }}
+      >
         <motion.h2
-          className='text-3xl font-medium italic'
+          className="text-4xl font-bold italic text-[#00695c] mb-8 text-center"
           initial="hidden"
           animate="visible"
           custom={0}
@@ -43,17 +70,12 @@ function About () {
           {t('information')}
         </motion.h2>
 
-        {[
-          'full',
-          'natural',
-          'research',
-          'horseback',
-          'rules',
-          'acquainted'
-        ].map((key, index) => (
+        {infoKeys.map((key, index) => (
           <motion.p
             key={key}
-            className={`w-200 mt-15 text-xl italic ${index % 2 !== 0 ? 'relative left-150' : ''}`}
+            className={`text-lg md:text-xl italic mb-7 px-2 ${
+              index % 2 !== 0 ? 'md:pl-24 text-right' : 'md:pr-24 text-left'
+            }`}
             initial="hidden"
             animate="visible"
             custom={index + 1}
@@ -62,15 +84,35 @@ function About () {
             {t(key)}
           </motion.p>
         ))}
-      </div>
+      </motion.div>
 
-      <div className="language-switcher">
-        <button onClick={() => changeLanguage('ru')}>RU</button>
-        <button onClick={() => changeLanguage('en')}>EN</button>
-        <button onClick={() => changeLanguage('kg')}>KG</button>
-      </div>
-    </div>
-  )
+      <motion.div
+        className="language-switcher flex gap-4 mt-10"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.7, duration: 0.6 }}
+      >
+        {['ru', 'en', 'kg'].map((lang) => (
+          <motion.button
+            key={lang}
+            onClick={() => changeLanguage(lang)}
+            className={`px-6 py-2 rounded-full font-semibold shadow-md transition-colors duration-200 ${
+              i18n.language === lang
+                ? 'bg-[#00695c] text-white'
+                : 'bg-white text-[#00695c] hover:bg-[#b2dfdb]'
+            }`}
+            variants={buttonVariants}
+            initial="initial"
+            whileHover="hover"
+            whileTap="tap"
+            aria-label={`Switch to ${lang.toUpperCase()}`}
+          >
+            {lang.toUpperCase()}
+          </motion.button>
+        ))}
+      </motion.div>
+    </motion.div>
+  );
 }
 
-export default About
+export default About;
