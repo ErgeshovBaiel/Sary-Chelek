@@ -7,22 +7,21 @@ function About() {
   const { t, i18n } = useTranslation();
 
   const textVariants = {
-    hidden: { opacity: 0, y: 40 },
+    hidden: { opacity: 0, y: 30 },
     visible: (i = 1) => ({
       opacity: 1,
       y: 0,
       transition: {
-        delay: i * 0.2,
-        duration: 0.6,
-        type: 'spring',
-        stiffness: 60,
+        delay: i * 0.15,
+        duration: 0.5,
+        ease: 'easeOut',
       },
     }),
   };
 
   const buttonVariants = {
     initial: { scale: 1 },
-    hover: { scale: 1.1, boxShadow: '0px 4px 16px rgba(0,0,0,0.15)' },
+    hover: { scale: 1.05, boxShadow: '0px 6px 20px rgba(0,0,0,0.2)' },
     tap: { scale: 0.95 },
   };
 
@@ -52,13 +51,13 @@ function About() {
       className="page flex flex-col items-center min-h-screen py-12 bg-gradient-to-b from-[#e0f7fa] to-[#b2dfdb]"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.7 }}
+      transition={{ duration: 0.6, ease: 'easeOut' }}
     >
       <motion.div
-        className="w-full max-w-3xl bg-white bg-opacity-80 rounded-xl shadow-lg p-4 sm:p-6 md:p-8 lg:p-10 mx-4"
-        initial={{ scale: 0.95, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 0.7, delay: 0.2 }}
+        className="w-full max-w-3xl bg-white bg-opacity-90 rounded-xl shadow-2xl p-4 sm:p-6 md:p-8 lg:p-10 mx-4 backdrop-blur-sm"
+        initial={{ scale: 0.9, opacity: 0, y: 30 }}
+        animate={{ scale: 1, opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
       >
         <motion.h2
           className="text-2xl sm:text-3xl md:text-4xl font-bold italic text-[#00695c] mb-6 sm:mb-8 text-center"

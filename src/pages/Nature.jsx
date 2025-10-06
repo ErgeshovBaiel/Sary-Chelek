@@ -19,36 +19,34 @@ function Nature() {
   }, [i18n]);
 
   const textVariants = {
-    hidden: { opacity: 0, x: -50 },
+    hidden: { opacity: 0, x: -30 },
     visible: (i = 1) => ({
       opacity: 1,
       x: 0,
       transition: {
-        delay: i * 0.2,
-        duration: 0.6,
-        type: 'spring',
-        stiffness: 60,
+        delay: i * 0.15,
+        duration: 0.5,
+        ease: 'easeOut',
       },
     }),
   };
 
   const imageVariants = {
-    hidden: { opacity: 0, x: 50 },
+    hidden: { opacity: 0, x: 30 },
     visible: (i = 1) => ({
       opacity: 1,
       x: 0,
       transition: {
-        delay: i * 0.2,
-        duration: 0.6,
-        type: 'spring',
-        stiffness: 60,
+        delay: i * 0.15,
+        duration: 0.5,
+        ease: 'easeOut',
       },
     }),
   };
 
   const buttonVariants = {
     initial: { scale: 1 },
-    hover: { scale: 1.1, boxShadow: '0px 4px 16px rgba(0,0,0,0.15)' },
+    hover: { scale: 1.05, boxShadow: '0px 6px 20px rgba(0,0,0,0.2)' },
     tap: { scale: 0.95 },
   };
 
@@ -66,7 +64,7 @@ function Nature() {
       className="page flex flex-col items-center min-h-screen py-12 bg-gradient-to-b from-[#e0f7fa] to-[#b2dfdb]"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.7 }}
+      transition={{ duration: 0.6, ease: 'easeOut' }}
     >
       <motion.h2
         className="text-2xl sm:text-3xl md:text-4xl font-bold italic text-[#00695c] mb-6 sm:mb-8 text-center px-4"
@@ -106,6 +104,8 @@ function Nature() {
               animate="visible"
               custom={index + 1}
               variants={imageVariants}
+              whileHover={{ scale: 1.05, boxShadow: '0px 10px 30px rgba(0,0,0,0.3)' }}
+              transition={{ duration: 0.3 }}
             />
 
             {!item.textFirst && (

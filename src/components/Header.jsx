@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import './Header.scss';
 
 function Header() {
@@ -14,9 +15,7 @@ function Header() {
       i18n.changeLanguage(savedLang);
     }
 
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 10);
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -30,13 +29,8 @@ function Header() {
     localStorage.setItem('language', nextLang);
   };
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
-  const closeMenu = () => {
-    setIsMenuOpen(false);
-  };
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const closeMenu = () => setIsMenuOpen(false);
 
   const getActiveClass = ({ isActive }) =>
     isActive ? 'activeLink nav-link' : 'nav-link';
@@ -96,43 +90,61 @@ function Header() {
         </div>
 
         {/* Mobile Menu */}
-        <div
-          className={`${isMenuOpen ? 'block' : 'hidden'
-            } w-full md:hidden mt-4`}
-        >
-          <nav className="flex flex-col gap-4 text-base font-normal italic">
-            {[
-              { to: '/', text: t('main') },
-              { to: '/about', text: t('about') },
-              { to: '/history', text: t('history') },
-              { to: '/nature', text: t('nature') },
-              { to: '/gallery', text: t('gallery') },
-              { to: '/how-to-go', text: t('how to go') },
-              { to: '/contact', text: t('contact') },
-            ].map((item) => (
-              <NavLink
-                key={item.to}
-                to={item.to}
-                className={({ isActive }) =>
-                  `block py-2 px-4 rounded-md transition-colors ${
-                    isActive ? 'bg-[#004d40]' : 'hover:bg-[#00796b]'
-                  }`
-                }
-                onClick={closeMenu}
-              >
-                {item.text}
-              </NavLink>
-            ))}
-            <button
-              className="font-medium text-base cursor-pointer italic bg-[#004d40] hover:bg-[#00796b] py-2 px-4 rounded-md transition-colors mt-2"
-              onClick={changeLanguage}
-              aria-label={t('change_language')}
-              type="button"
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div
+              className="w-full md:hidden mt-4"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3, ease: 'easeInOut' }}
             >
-              {t('language')}
-            </button>
-          </nav>
-        </div>
+              <nav className="flex flex-col gap-3 text-base font-normal italic">
+                {[
+                  { to: '/', text: t('main') },
+                  { to: '/about', text: t('about') },
+                  { to: '/history', text: t('history') },
+                  { to: '/nature', text: t('nature') },
+                  { to: '/gallery', text: t('gallery') },
+                  { to: '/how-to-go', text: t('how to go') },
+                  { to: '/contact', text: t('contact') },
+                ].map((item, index) => (
+                  <motion.div
+                    key={item.to}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.05, duration: 0.3 }}
+                  >
+                    <NavLink
+                      to={item.to}
+                      className={({ isActive }) =>
+                        `block py-2 px-4 rounded-md transition-all duration-200 ${
+                          isActive ? 'bg-[#004d40]' : 'hover:bg-[#00796b]'
+                        }`
+                      }
+                      onClick={closeMenu}
+                    >
+                      {item.text}
+                    </NavLink>
+                  </motion.div>
+                ))}
+                <motion.button
+                  className="font-medium text-base cursor-pointer italic bg-[#004d40] hover:bg-[#00796b] py-2 px-4 rounded-md transition-all duration-200 mt-2"
+                  onClick={changeLanguage}
+                  aria-label={t('change_language')}
+                  type="button"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.35, duration: 0.3 }}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  {t('language')}
+                </motion.button>
+              </nav>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* Desktop Menu */}
         <nav className="hidden md:flex items-center gap-4 lg:gap-6 text-base lg:text-lg font-normal italic">
@@ -157,14 +169,16 @@ function Header() {
           <NavLink to="/contact" className={getActiveClass}>
             {t('contact')}
           </NavLink>
-          <button
+          <motion.button
             className="font-medium text-base lg:text-lg cursor-pointer italic bg-transparent border-none outline-none hover:opacity-80 transition-opacity"
             onClick={changeLanguage}
             aria-label={t('change_language')}
             type="button"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
             {t('language')}
-          </button>
+          </motion.button>
         </nav>
       </div>
     </header>

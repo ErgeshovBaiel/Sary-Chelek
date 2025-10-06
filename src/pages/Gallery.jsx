@@ -27,13 +27,13 @@ function Gallery() {
   ];
 
   const textVariants = {
-    hidden: { opacity: 0, y: -30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.7 } }
+    hidden: { opacity: 0, y: -20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } }
   };
 
   const buttonVariants = {
     initial: { scale: 1 },
-    hover: { scale: 1.1, boxShadow: '0px 4px 16px rgba(0,0,0,0.15)' },
+    hover: { scale: 1.05, boxShadow: '0px 6px 20px rgba(0,0,0,0.2)' },
     tap: { scale: 0.95 },
   };
 
@@ -54,7 +54,7 @@ function Gallery() {
       className="page flex flex-col items-center min-h-screen py-12 bg-gradient-to-b from-[#e0f7fa] to-[#b2dfdb]"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.7 }}
+      transition={{ duration: 0.6, ease: 'easeOut' }}
     >
       <motion.h2
         className="text-2xl sm:text-3xl md:text-4xl font-bold italic text-[#00695c] mb-4 text-center px-4"
@@ -75,9 +75,9 @@ function Gallery() {
 
       <motion.div
         className="w-full max-w-3xl mx-auto mb-6 sm:mb-8 md:mb-10 px-4"
-        initial={{ scale: 0.95, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 0.7, delay: 0.2 }}
+        initial={{ scale: 0.9, opacity: 0, y: 30 }}
+        animate={{ scale: 1, opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
       >
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}
@@ -94,9 +94,10 @@ function Gallery() {
                 src={src}
                 alt={`Gallery ${index}`}
                 className="img rounded-2xl shadow-lg object-cover w-full h-64 sm:h-80 md:h-96"
-                initial={{ opacity: 0, scale: 0.95 }}
+                initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.7 }}
+                transition={{ duration: 0.5 }}
+                whileHover={{ scale: 1.02 }}
               />
             </SwiperSlide>
           ))}
