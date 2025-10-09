@@ -1,38 +1,223 @@
-@keyframes bounce-char {
-  100% {
-    top: -10px;
-    
-    @media (min-width: 640px) {
-      top: -15px;
+/* Header.scss */
+
+.header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.6);
+  -webkit-backdrop-filter: saturate(180%) blur(14px);
+  backdrop-filter: saturate(180%) blur(14px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+  z-index: 100;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+
+  &.scrolled {
+    background-color: rgba(250, 250, 250, 0.85);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  }
+
+  .header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0.5rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .logo-section {
+      display: flex;
+      align-items: center;
+
+      .menu-toggle {
+        display: none; /* show only on mobile with media query */
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0.25rem;
+        border-radius: 8px;
+        transition: background-color 0.2s ease, transform 0.2s ease;
+
+        .icon {
+          width: 28px;
+          height: 28px;
+        }
+
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.05);
+          transform: translateY(-1px);
+        }
+      }
+
+      .logo-text {
+        display: flex;
+        align-items: center;
+
+        h1 {
+          margin: 0;
+          font-size: 1.75rem;
+          font-weight: 800;
+          letter-spacing: 0.02em;
+          line-height: 1;
+          /* Animated gradient title */
+          background: linear-gradient(90deg, #0ea5e9, #22c55e, #f59e0b, #ef4444, #8b5cf6);
+          background-size: 200% auto;
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent;
+          animation: shine 6s linear infinite;
+
+          .animate-bounce-char {
+            display: inline-block;
+            /* wave-like bob with staggered delays provided inline */
+            animation: floatWave 1.6s ease-in-out infinite;
+            transform-origin: 50% 100%;
+            will-change: transform;
+          }
+        }
+
+        .logo-img {
+          width: 50px;
+          height: 50px;
+          margin-left: 0.5rem;
+          border-radius: 50%;
+          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+          object-fit: cover;
+        }
+      }
     }
-    
-    @media (min-width: 768px) {
-      top: -20px;
+
+    .desktop-menu {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
+      .nav-link {
+        text-decoration: none;
+        color: #333;
+        font-weight: 500;
+        position: relative;
+        padding: 0.25rem 0;
+        transition: color 0.2s ease;
+
+        &::after {
+          content: "";
+          position: absolute;
+          left: 0;
+          bottom: -4px;
+          height: 2px;
+          width: 0%;
+          background: linear-gradient(90deg, #0ea5e9, #22c55e, #f59e0b);
+          transition: width 0.3s ease;
+          border-radius: 2px;
+        }
+
+        &:hover {
+          color: #000;
+        }
+
+        &:hover::after,
+        &.activeLink::after {
+          width: 100%;
+        }
+
+        &.activeLink {
+          color: #007bff;
+        }
+      }
+
+      .auth-btn,
+      .lang-btn {
+        padding: 0.4rem 0.8rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: #007bff;
+        color: white;
+        font-weight: 500;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        box-shadow: 0 6px 16px rgba(0, 123, 255, 0.25);
+      }
+
+      .auth-btn:hover,
+      .lang-btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 10px 22px rgba(0, 123, 255, 0.35);
+      }
+    }
+
+    /* Mobile menu */
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      gap: 0.5rem;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.7);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      padding: 0.75rem;
+      margin-top: 0.5rem;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+
+      .mobile-nav-link {
+        text-decoration: none;
+        color: #333;
+        font-weight: 500;
+        padding: 0.5rem 0.25rem;
+        border-radius: 8px;
+        transition: background-color 0.2s ease, color 0.2s ease;
+
+        &.active {
+          color: #007bff;
+        }
+
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.04);
+          color: #000;
+        }
+      }
+
+      .auth-btn {
+        background-color: #28a745;
+        color: white;
+        border-radius: 8px;
+        box-shadow: 0 6px 16px rgba(40, 167, 69, 0.25);
+      }
     }
   }
 }
 
-.animate-bounce-char {
-  position: relative;
-  top: 10px;
-  display: inline-block;
-  font-size: 20px;
-  font-style: italic;
-  color: white;
-  animation: bounce-char 0.8s ease infinite alternate;
-  
-  @media (min-width: 640px) {
-    top: 15px;
-    font-size: 24px;
-  }
-  
-  @media (min-width: 768px) {
-    top: 20px;
-    font-size: 30px;
+/* Animated gradient shine for title */
+@keyframes shine {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+/* Wave float for each character (staggered via inline delay) */
+@keyframes floatWave {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-4px) rotate(-1deg); }
+  50% { transform: translateY(0) rotate(0.6deg); }
+  75% { transform: translateY(4px) rotate(-0.6deg); }
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .header-container {
+    .desktop-menu {
+      display: none;
+    }
+
+    .menu-toggle {
+      display: block;
+    }
+
+    .mobile-menu {
+      display: flex;
+    }
   }
 }
 
-.activeLink {
-  border-bottom: 2px solid white;
-  padding-bottom: 2px;
-}

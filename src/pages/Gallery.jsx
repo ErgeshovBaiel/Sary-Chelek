@@ -31,17 +31,6 @@ function Gallery() {
     visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } }
   };
 
-  const buttonVariants = {
-    initial: { scale: 1 },
-    hover: { scale: 1.05, boxShadow: '0px 6px 20px rgba(0,0,0,0.2)' },
-    tap: { scale: 0.95 },
-  };
-
-  const changeLanguage = (newLang) => {
-    i18n.changeLanguage(newLang);
-    localStorage.setItem('language', newLang);
-  };
-
   useEffect(() => {
     const savedLang = localStorage.getItem('language');
     if (savedLang && savedLang !== i18n.language) {
@@ -64,6 +53,7 @@ function Gallery() {
       >
         {t('photos')}
       </motion.h2>
+
       <motion.p
         className="text-lg sm:text-xl md:text-2xl font-medium italic mt-2 mb-6 sm:mb-8 text-center px-4"
         initial="hidden"
@@ -102,32 +92,6 @@ function Gallery() {
             </SwiperSlide>
           ))}
         </Swiper>
-      </motion.div>
-
-      <motion.div
-        className="language-switcher flex flex-wrap gap-3 sm:gap-4 mt-4 sm:mt-6 md:mt-8 justify-center px-4"
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.7, duration: 0.6 }}
-      >
-        {['ru', 'en', 'kg'].map((lang) => (
-          <motion.button
-            key={lang}
-            onClick={() => changeLanguage(lang)}
-            className={`px-4 sm:px-6 py-2 rounded-full text-sm sm:text-base font-semibold shadow-md transition-colors duration-200 ${
-              i18n.language === lang
-                ? 'bg-[#00695c] text-white'
-                : 'bg-white text-[#00695c] hover:bg-[#b2dfdb]'
-            }`}
-            variants={buttonVariants}
-            initial="initial"
-            whileHover="hover"
-            whileTap="tap"
-            aria-label={`Switch to ${lang.toUpperCase()}`}
-          >
-            {lang.toUpperCase()}
-          </motion.button>
-        ))}
       </motion.div>
     </motion.div>
   );

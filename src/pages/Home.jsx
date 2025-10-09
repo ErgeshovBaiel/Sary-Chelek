@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import './Page.scss';
 import About from './About';
@@ -8,17 +6,13 @@ import Nature from './Nature';
 import Gallery from './Gallery';
 import HowToGo from './HowToGo';
 import Contact from './Contact';
+import { useTranslation } from 'react-i18next';
 
 function Home() {
-  const { t, i18n } = useTranslation();
-
-  useEffect(() => {
-    const savedLang = localStorage.getItem('language');
-    if (savedLang) i18n.changeLanguage(savedLang);
-  }, [i18n]);
+  const { t } = useTranslation();
 
   return (
-    <div className="page">
+    <div className="page pt-6 pb-8">
       <motion.h2
         className="text-2xl sm:text-3xl md:text-4xl font-medium italic px-4"
         initial={{ opacity: 0, y: -50 }}
@@ -38,7 +32,7 @@ function Home() {
       </motion.p>
 
       <motion.img
-        className="image w-full max-w-[90%] sm:max-w-[80%] md:max-w-[900px] h-auto sm:h-[400px] md:h-[600px]"
+        className="image w-full max-w-[90%] sm:max-w-[80%] md:max-w-[900px] h-auto sm:h-[400px] md:h-[600px] mx-auto rounded-xl shadow-lg"
         src="https://concept.kg/media/cache/3b/1c/3b1c199419217bbce8f50f065db361b1.jpg"
         alt="Сары-Челек"
         initial={{ opacity: 0, scale: 0.9 }}

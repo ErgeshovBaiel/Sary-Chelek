@@ -80,32 +80,8 @@ function HowToGo() {
           title='Sary-Chelek map'
         />
       </motion.div>
-
-      <motion.div
-        className="language-switcher flex flex-wrap gap-3 sm:gap-4 mt-8 justify-center px-4"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-      >
-        {['ru', 'en', 'kg'].map((lang, index) => (
-          <motion.button
-            key={lang}
-            className="px-4 sm:px-6 py-2 rounded-full text-sm sm:text-base font-semibold shadow-md bg-[#00695c] text-white hover:bg-[#004d40] transition-colors"
-            onClick={() => changeLanguage(lang)}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: index * 0.1 }}
-          >
-            {lang.toUpperCase()}
-          </motion.button>
-        ))}
-      </motion.div>
     </div>
-  )
+  );
 }
 
-export default HowToGo
+export default HowToGo;

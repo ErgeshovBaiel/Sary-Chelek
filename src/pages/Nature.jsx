@@ -6,11 +6,6 @@ import './Page.scss';
 function Nature() {
   const { t, i18n } = useTranslation();
 
-  const changeLanguage = (newLang) => {
-    i18n.changeLanguage(newLang);
-    localStorage.setItem('language', newLang);
-  };
-
   useEffect(() => {
     const savedLang = localStorage.getItem('language');
     if (savedLang && savedLang !== i18n.language) {
@@ -44,19 +39,13 @@ function Nature() {
     }),
   };
 
-  const buttonVariants = {
-    initial: { scale: 1 },
-    hover: { scale: 1.05, boxShadow: '0px 6px 20px rgba(0,0,0,0.2)' },
-    tap: { scale: 0.95 },
-  };
-
   const items = [
     { text: 'located', img: 'https://manas.su/assets/images/see_place/Sary-chelek.jpg', textFirst: true },
     { text: 'unique', img: 'https://www.centralasia-travel.com/upload/tiles/sari-chelek-mice-708.jpg', textFirst: false },
     { text: 'abundance', img: 'https://i.ytimg.com/vi/3oMzYNjDguY/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBOWhevRiAso2SFeXp2AYdonXLY1A', textFirst: true },
     { text: 'contains', img: 'https://eastroute.com/wp-content/uploads/2019/06/Mt-Cook-Lily-and-Mt-Cook-Fraser-Gunn_croped.jpg', textFirst: false },
     { text: 'designated', img: 'https://cdn-1.aki.kg/cdn-st-0/qdN/L/2018998.deeff05c72df71e082faeb9fa6680150.500.jpg', textFirst: true },
-    { text: 'hiking', img: 'https://akademiya-gornih-turov.ru/wp-content/uploads/free/fons/other/set00/free-fons-other-set00-05.jpg', textFirst: false }
+    { text: 'hiking', img: 'https://akademiya-gornih-turov.ru/wp-content/uploads/free/fons/other/set00/free-fons-other-set00-05.jpg', textFirst: false },
   ];
 
   return (
@@ -122,31 +111,6 @@ function Nature() {
           </div>
         ))}
       </div>
-
-      <motion.div
-        className="language-switcher flex flex-wrap gap-3 sm:gap-4 mt-6 sm:mt-8 md:mt-10 justify-center px-4"
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.7, duration: 0.6 }}
-      >
-        {['ru', 'en', 'kg'].map((lang) => (
-          <motion.button
-            key={lang}
-            onClick={() => changeLanguage(lang)}
-            className={`px-4 sm:px-6 py-2 rounded-full text-sm sm:text-base font-semibold shadow-md transition-colors duration-200 ${
-              i18n.language === lang
-                ? 'bg-[#00695c] text-white'
-                : 'bg-white text-[#00695c] hover:bg-[#b2dfdb]'
-            }`}
-            variants={buttonVariants}
-            initial="initial"
-            whileHover="hover"
-            whileTap="tap"
-          >
-            {lang.toUpperCase()}
-          </motion.button>
-        ))}
-      </motion.div>
     </motion.div>
   );
 }
