@@ -1,5 +1,13 @@
 /* Header.scss */
 
+// Variables
+$primary-green: #10b981;
+$primary-teal: #14b8a6;
+$primary-blue: #0ea5e9;
+$text-dark: #1e293b;
+$text-medium: #475569;
+$text-light: #94a3b8;
+
 .header {
   position: fixed;
   width: 100%;
@@ -229,11 +237,6 @@
   }
 }
 
-// Variables for consistency
-$primary-green: #10b981;
-$primary-teal: #14b8a6;
-$text-dark: #1e293b;
-
 /* Animated gradient shift for header background */
 @keyframes gradientShift {
   0%, 100% {
@@ -260,8 +263,8 @@ $text-dark: #1e293b;
 
 /* Media Queries - Comprehensive Responsive Design */
 
-// Tablet and below (768px)
-@media (max-width: 768px) {
+// Tablet and small laptops (≤1024px) — switch to mobile nav earlier
+@media (max-width: 1024px) {
   .header {
     .header-container {
       padding: 0.75rem 1rem;
