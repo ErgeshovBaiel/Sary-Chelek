@@ -5,17 +5,18 @@
   width: 100%;
   top: 0;
   left: 0;
-  background-color: rgba(255, 255, 255, 0.6);
+  background: linear-gradient(135deg, #10b981 0%, #059669 50%, #047857 100%);
+  background-size: 200% 200%;
+  animation: gradientShift 8s ease infinite;
   -webkit-backdrop-filter: saturate(180%) blur(14px);
   backdrop-filter: saturate(180%) blur(14px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
   z-index: 100;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  transition: box-shadow 0.3s ease;
 
   &.scrolled {
-    background-color: rgba(250, 250, 250, 0.85);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   }
 
   .header-container {
@@ -61,7 +62,7 @@
           letter-spacing: 0.02em;
           line-height: 1;
           /* Animated gradient title */
-          background: linear-gradient(90deg, #0ea5e9, #22c55e, #f59e0b, #ef4444, #8b5cf6);
+          background: linear-gradient(90deg, #0ea5e9, #22c55e, #f59e0b);
           background-size: 200% auto;
           -webkit-background-clip: text;
           background-clip: text;
@@ -95,26 +96,28 @@
 
       .nav-link {
         text-decoration: none;
-        color: #333;
-        font-weight: 500;
+        color: rgba(255, 255, 255, 0.9);
+        font-weight: 600;
         position: relative;
         padding: 0.25rem 0;
-        transition: color 0.2s ease;
+        transition: color 0.2s ease, transform 0.2s ease;
 
         &::after {
           content: "";
           position: absolute;
           left: 0;
           bottom: -4px;
-          height: 2px;
+          height: 3px;
           width: 0%;
-          background: linear-gradient(90deg, #0ea5e9, #22c55e, #f59e0b);
+          background: linear-gradient(90deg, #fbbf24, #ffffff, #fbbf24);
           transition: width 0.3s ease;
           border-radius: 2px;
+          box-shadow: 0 2px 8px rgba(251, 191, 36, 0.5);
         }
 
         &:hover {
-          color: #000;
+          color: #ffffff;
+          transform: translateY(-2px);
         }
 
         &:hover::after,
@@ -123,27 +126,49 @@
         }
 
         &.activeLink {
-          color: #007bff;
+          color: #ffffff;
+          text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+      }
+      
+      .success-message {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 0.5rem 1rem;
+        background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+        color: #065f46;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        border: 2px solid #6ee7b7;
+        
+        svg {
+          flex-shrink: 0;
         }
       }
 
       .auth-btn,
       .lang-btn {
-        padding: 0.4rem 0.8rem;
-        border: none;
-        border-radius: 5px;
+        padding: 0.5rem 1rem;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50px;
         cursor: pointer;
-        background-color: #007bff;
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(10px);
         color: white;
-        font-weight: 500;
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-        box-shadow: 0 6px 16px rgba(0, 123, 255, 0.25);
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       }
 
       .auth-btn:hover,
       .lang-btn:hover {
-        transform: translateY(-1px);
-        box-shadow: 0 10px 22px rgba(0, 123, 255, 0.35);
+        transform: translateY(-2px);
+        background: rgba(255, 255, 255, 0.25);
+        border-color: rgba(255, 255, 255, 0.5);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
       }
     }
 
@@ -187,6 +212,16 @@
         box-shadow: 0 6px 16px rgba(40, 167, 69, 0.25);
       }
     }
+  }
+}
+
+/* Animated gradient shift for header background */
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
   }
 }
 

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import './Page.scss';
+import './PageStyles.scss';
 import About from './About';
 import History from './History';
 import Nature from './Nature';

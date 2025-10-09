@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { useEffect } from 'react';
-import './Page.scss';
+import './PageStyles.scss';
 
 function History() {
   const { t, i18n } = useTranslation();

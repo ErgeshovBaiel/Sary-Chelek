@@ -45,6 +45,7 @@ function App () {
 
   const handleRegistrationComplete = user => {
     localStorage.setItem('showSuccess', 'true')
+    localStorage.setItem('showHeaderSuccess', 'true')
     setIsRegistered(true)
     setShowSuccess(true)
   }

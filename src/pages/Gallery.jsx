@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import './Page.scss';
+import './PageStyles.scss';
 
 function Gallery() {
   const { t, i18n } = useTranslation();

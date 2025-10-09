@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import { CheckCircle } from 'lucide-react';
 import Auth from './Auth';
 import './Header.scss';
 
@@ -10,11 +11,31 @@ function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
     const [isAuthOpen, setIsAuthOpen] = useState(false);
+    const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+    const [isRegistered, setIsRegistered] = useState(false);
 
     useEffect(() => {
         const savedLang = localStorage.getItem('language');
         if (savedLang && savedLang !== i18n.language) {
             i18n.changeLanguage(savedLang);
+        }
+
+        // Check if user is registered
+        const registered = localStorage.getItem('isRegistered');
+        const shouldShowSuccess = localStorage.getItem('showHeaderSuccess');
+        
+        if (registered === 'true') {
+            setIsRegistered(true);
+            
+            // Show success message for 2 seconds on first load
+            if (shouldShowSuccess === 'true') {
+                setShowSuccessMessage(true);
+                const timer = setTimeout(() => {
+                    setShowSuccessMessage(false);
+                    localStorage.removeItem('showHeaderSuccess');
+                }, 2000);
+                return () => clearTimeout(timer);
+            }
         }
 
         const handleScroll = () => setIsScrolled(window.scrollY > 10);
@@ -157,17 +178,19 @@ function Header() {
                                         </NavLink>
                                     </motion.div>
                                 ))}
-                                <motion.button
-                                    className="auth-btn"
-                                    onClick={() => { toggleAuth(); closeMenu(); }}
-                                    initial={{ opacity: 0, x: -20 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    transition={{ delay: 0.35, duration: 0.3 }}
-                                    whileHover={{ scale: 1.02 }}
-                                    whileTap={{ scale: 0.98 }}
-                                >
-                                    Sign In / Sign Up
-                                </motion.button>
+                                {!isRegistered && (
+                                    <motion.button
+                                        className="auth-btn"
+                                        onClick={() => { toggleAuth(); closeMenu(); }}
+                                        initial={{ opacity: 0, x: -20 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ delay: 0.35, duration: 0.3 }}
+                                        whileHover={{ scale: 1.02 }}
+                                        whileTap={{ scale: 0.98 }}
+                                    >
+                                        Sign In / Sign Up
+                                    </motion.button>
+                                )}
                             </motion.nav>
                         )}
                     </AnimatePresence>
@@ -181,7 +204,29 @@ function Header() {
                         <NavLink to="/gallery" className={getActiveClass}>{t('gallery')}</NavLink>
                         <NavLink to="/how-to-go" className={getActiveClass}>{t('how to go')}</NavLink>
                         <NavLink to="/contact" className={getActiveClass}>{t('contact')}</NavLink>
-                        <motion.button className="auth-btn" onClick={toggleAuth} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>Sign In / Sign Up</motion.button>
+                        
+                        {/* Success Message */}
+                        <AnimatePresence>
+                            {showSuccessMessage && (
+                                <motion.div 
+                                    className="success-message"
+                                    initial={{ opacity: 0, scale: 0.8, y: -10 }}
+                                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                                    exit={{ opacity: 0, scale: 0.8, y: -10 }}
+                                    transition={{ duration: 0.3 }}
+                                >
+                                    <CheckCircle size={18} />
+                                    <span>{t('registration_success') || 'You have successfully registered'}</span>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+                        
+                        {!isRegistered && (
+                            <motion.button className="auth-btn" onClick={toggleAuth} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                                Sign In / Sign Up
+                            </motion.button>
+                        )}
+                        
                         <motion.button className="lang-btn" onClick={changeLanguage} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                             {t('language')}
                         </motion.button>

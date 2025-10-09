@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import './Page.scss';
+import './PageStyles.scss';
 
 function Contact() {
   const { t, i18n } = useTranslation();
