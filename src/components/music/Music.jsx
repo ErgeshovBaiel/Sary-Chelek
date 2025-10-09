@@ -34,7 +34,7 @@ export default function Music() {
     <div className="w-360 m-auto">
       <audio ref={audioRef} src={music} loop />
       <button onClick={toggleMusic} className="music-toggle" style={{ backgroundColor: color }}>
-        {isPlaying ? <Volume2 size={24} /> : <VolumeX size={24} />}
+        {isPlaying ? <Volume2 size={25} /> : <VolumeX size={24} />}
       </button>
     </div>
   );
