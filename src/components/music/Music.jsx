@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react"; 
 import { Volume2, VolumeX } from "lucide-react";
 import "./Music.scss";
-import music from './music/Abdulhamid.mp3'; 
+import music from './music/Sary-Chelek.mp3'; 
 
 export default function Music() {
   const [isPlaying, setIsPlaying] = useState(false);

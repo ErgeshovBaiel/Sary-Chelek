@@ -518,6 +518,37 @@ $shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         }
       }
 
+      // Auth tabs
+      .auth-tabs {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin: 10px 0 20px;
+
+        .tab {
+          @include glass-effect;
+          border: 2px solid rgba(14, 165, 233, 0.25);
+          border-radius: 12px;
+          padding: 10px 16px;
+          cursor: pointer;
+          font-weight: 700;
+          color: $text-dark;
+          @include transition(all, 0.25s);
+
+          &.active {
+            border-color: $primary-color;
+            color: $primary-color;
+            background: rgba(14, 165, 233, 0.12);
+            box-shadow: 0 8px 24px rgba(14, 165, 233, 0.2) inset;
+          }
+
+          &:hover {
+            transform: translateY(-1px);
+            border-color: rgba(14, 165, 233, 0.5);
+          }
+        }
+      }
+
       form {
         display: flex;
         flex-direction: column;

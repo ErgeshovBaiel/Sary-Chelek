@@ -1,0 +1,215 @@
+.exit-button-container {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: flex-end;
+
+  @media (max-width: 768px) {
+    bottom: 20px;
+    right: 20px;
+    gap: 12px;
+  }
+}
+
+.language-switcher {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  border-radius: 50px;
+  padding: 12px 16px;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+  }
+
+  &:hover::before {
+    left: 100%;
+  }
+
+  &:hover {
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    transform: translateY(-2px);
+  }
+
+  .lang-text {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+}
+
+.exit-button {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
+  border: none;
+  border-radius: 50px;
+  padding: 16px 24px;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  box-shadow: 0 6px 20px rgba(255, 107, 107, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  min-width: 200px;
+  backdrop-filter: blur(10px);
+
+  @media (max-width: 768px) {
+    min-width: 160px;
+    padding: 14px 20px;
+    font-size: 14px;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s;
+  }
+
+  &:hover::before {
+    left: 100%;
+  }
+
+  &:active {
+    transform: scale(0.95) translateY(1px);
+  }
+}
+
+.exit-button-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  z-index: 2;
+}
+
+.exit-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.exit-text {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.exit-button-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+// Floating animation
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.exit-button-container {
+  animation: float 3s ease-in-out infinite;
+}
+
+// Pulse animation for attention
+@keyframes pulse {
+  0% {
+    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.3);
+  }
+  50% {
+    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.5), 0 0 0 0 rgba(255, 107, 107, 0.7);
+  }
+  100% {
+    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.3);
+  }
+}
+
+.exit-button {
+  animation: pulse 2s infinite;
+}
+
+// Responsive design
+@media (max-width: 480px) {
+  .exit-button-container {
+    bottom: 15px;
+    right: 15px;
+  }
+
+  .exit-button {
+    min-width: 140px;
+    padding: 12px 16px;
+    font-size: 13px;
+  }
+
+  .language-switcher {
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .exit-button {
+    background: linear-gradient(135deg, #ff4757 0%, #ff3838 100%);
+    box-shadow: 0 6px 20px rgba(255, 71, 87, 0.4);
+  }
+
+  .language-switcher {
+    background: linear-gradient(135deg, #5f27cd 0%, #341f97 100%);
+    box-shadow: 0 4px 15px rgba(95, 39, 205, 0.4);
+  }
+}
+
+// High contrast mode
+@media (prefers-contrast: high) {
+  .exit-button {
+    border: 2px solid white;
+    background: #ff0000;
+  }
+
+  .language-switcher {
+    border: 2px solid white;
+    background: #0000ff;
+  }
+}
